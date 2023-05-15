@@ -1,13 +1,18 @@
-import type { Component } from "solid-js";
+import type { Component, JSXElement } from "solid-js";
 
-const Card: Component = () => {
+interface IProps {
+  rounded?: boolean;
+  flat?: boolean;
+  children: JSXElement;
+}
+
+const Card: Component<IProps> = ({ rounded, flat, children }) => {
   return (
-    <div class="bg-white p-4 text-center rounded-md shadow-md">
-      <h2>Card Component</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, enim?
-      </p>
-      <button class="btn">read more</button>
+    <div
+      class="bg-white p-4 text-center rounded-md shadow-md"
+      classList={{ "rounded-md": rounded, "shadow-md": !flat }}
+    >
+      {children}
     </div>
   );
 };
