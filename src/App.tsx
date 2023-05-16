@@ -3,6 +3,7 @@ import { Routes, Route, A } from "@solidjs/router";
 import banner from "./assets/banner.png";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import Product from "./pages/Product";
 
 const App: Component = () => {
   const [darkTheme, setDarkTheme] = createSignal<boolean>(false);
@@ -30,6 +31,7 @@ const App: Component = () => {
       <Routes>
         <Route path="/" component={Home} />
         <Route path="/cart" component={Cart} />
+        <Route path="/product/:id" component={Product} />
       </Routes>
     </div>
   );
