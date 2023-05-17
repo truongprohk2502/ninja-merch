@@ -4,9 +4,18 @@ import banner from "./assets/banner.png";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Product from "./pages/Product";
+import { useCartContext } from "./contexts/CartContext";
 
 const App: Component = () => {
   const [darkTheme, setDarkTheme] = createSignal<boolean>(false);
+
+  const { items } = useCartContext();
+
+  const quantity = () => {
+    return items.reduce((acc, current) => {
+      return acc + current.quantity;
+    }, 0);
+  };
 
   return (
     <div class="container m-auto">
@@ -23,7 +32,7 @@ const App: Component = () => {
         <h1 class="mr-auto">Ninja Merch</h1>
 
         <A href="/">Home</A>
-        <A href="/cart">Cart</A>
+        <A href="/cart">Cart ({quantity()})</A>
       </header>
 
       <img class="rounded-md" src={banner} alt="site banner" />
