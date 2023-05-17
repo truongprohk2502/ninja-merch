@@ -1,6 +1,7 @@
 import { Component, For, Show, createResource } from "solid-js";
 import { A } from "@solidjs/router";
 import Card from "../components/Card";
+import { IProduct } from "./Product";
 
 const fetchProducts = async () => {
   const res = await fetch("http://localhost:4000/products");
@@ -8,7 +9,7 @@ const fetchProducts = async () => {
 };
 
 const Home: Component = () => {
-  const [products] = createResource(fetchProducts);
+  const [products] = createResource<IProduct[]>(fetchProducts);
 
   return (
     <Show when={products()} fallback={<p>Loading...</p>}>
